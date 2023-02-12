@@ -26,7 +26,6 @@ const MovieDetails = () => {
     async function fetchMovieDetails() {
       try {
         const movie = await getMovieDetails(movieId);
-        console.log(movie);
         setMovie(movie);
         setStatus(Status.RESOLVED);
       } catch (error) {

@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'services/Api';
 import defaultImg from 'images/noFoto.png';
+import {
+  CastList,
+  CastItem,
+  CastDescription,
+  Image,
+} from './MovieDetailsCast.styled';
 
 const MovieDetailsCast = () => {
   const { movieId } = useParams();
@@ -11,7 +17,6 @@ const MovieDetailsCast = () => {
     async function fetchCast() {
       try {
         const movieCast = await getMovieCredits(movieId);
-        console.log(movieCast.cast);
         setCast(movieCast.cast);
       } catch (error) {
         console.log(error);
@@ -23,25 +28,26 @@ const MovieDetailsCast = () => {
   return (
     <>
       {cast && (
-        <ul>
+        <CastList>
           {cast.map(({ id, name, character, profile_path }) => (
-            <li key={id}>
-              <img
+            <CastItem key={id}>
+              <Image
                 src={
                   profile_path
                     ? `https://image.tmdb.org/t/p/w185${profile_path}`
                     : defaultImg
                 }
                 alt={name}
-                style={{ width: 185 }}
               />
-              <p>{name}</p>
-              <p>
-                <span>Character:</span> {character}
-              </p>
-            </li>
+              <CastDescription>
+                <p>{name}</p>
+                <p>
+                  <span>Character:</span> {character}
+                </p>
+              </CastDescription>
+            </CastItem>
           ))}
-        </ul>
+        </CastList>
       )}
     </>
   );

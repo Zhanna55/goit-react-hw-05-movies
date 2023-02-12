@@ -5,7 +5,7 @@ import { CardContainer } from './MovieDetailsCard.styled';
 export const MovieDetailsCard = ({ movie }) => {
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movie;
-  console.log(movie);
+
   return (
     <CardContainer>
       <img
