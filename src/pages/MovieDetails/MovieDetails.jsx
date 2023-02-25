@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import {
   Outlet,
   useParams,
@@ -61,7 +61,9 @@ const MovieDetails = () => {
               </li>
             </ul>
           </Wrapper>
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </Container>
       )}
     </>
